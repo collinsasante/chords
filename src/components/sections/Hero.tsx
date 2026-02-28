@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { ChevronDown, Play } from 'lucide-react'
 import { clipReveal, EASE } from '../../lib/animations'
 import { Button } from '../ui'
+import heroBg from '../../CosmicKreatifStudios294.jpg'
 
 // YouTube video IDs to cycle as the hero background
 const YT_ID = 'ML_RwZ3EhiM'
@@ -27,7 +28,7 @@ export function Hero() {
       {/* ── Static image fallback (always visible while video loads) ── */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1920&q=80"
+          src={heroBg}
           alt=""
           role="presentation"
           className="w-full h-full object-cover"
@@ -115,7 +116,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.15, ease: EASE }}
         >
-          A non-denominational music group at UENR, Sunyani — spreading the Word of God through music and choreography since 2014.
+          A non-denominational music group at UENR, Sunyani. Spreading the Word of God through music and choreography since 2014.
         </motion.p>
 
         {/* CTAs */}

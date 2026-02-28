@@ -74,10 +74,10 @@ export function About() {
 
             <div className="space-y-5 mb-12 text-white/52 text-base lg:text-[1.05rem] leading-[1.8]">
               <p>
-                Chords Ministry is a non-denominational music group born on the campus of the University of Energy and Natural Resources (UENR), Sunyani. Since 2014, we have existed for one purpose — to spread the Word of God through the transformative power of music and choreography.
+                Chords Ministry is a non-denominational music group born on the campus of the University of Energy and Natural Resources (UENR), Sunyani. Since 2014, we have existed for one purpose: to spread the Word of God through the transformative power of music and choreography.
               </p>
               <p>
-                We believe every note is a declaration and every movement is an act of worship. Through our annual events, campus outreaches, and intentional community, we carry the sound of the Gospel beyond four walls — into hearts, halls, and lives across campus and beyond.
+                We believe every note is a declaration and every movement is an act of worship. Through our annual events, campus outreaches, and intentional community, we carry the sound of the Gospel beyond four walls, into hearts, halls, and lives across campus and beyond.
               </p>
             </div>
 

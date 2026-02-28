@@ -26,7 +26,7 @@ export function Videos() {
             Ministrations
           </h2>
           <p className="text-white/38 text-[14px] max-w-md mx-auto leading-relaxed">
-            Experience the sound of revival — live worship, teachings, and moments from our ministry.
+            Experience the sound of revival: live worship, teachings, and moments from our ministry.
           </p>
         </motion.div>
 

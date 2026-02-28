@@ -6,7 +6,7 @@ export const EVENTS: Event[] = [
     date: 'Every New Semester',
     location: 'UENR Campus, Sunyani',
     description:
-      'A vibrant welcome celebration for new students — an evening of music, worship, and warm community that marks the beginning of a new season and invites fresh faces into the Chords Ministry family.',
+      'A vibrant welcome celebration for new students,an evening of music, worship, and warm community that marks the beginning of a new season and invites fresh faces into the Chords Ministry family.',
     image:
       'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
     category: 'Welcome',
@@ -16,7 +16,7 @@ export const EVENTS: Event[] = [
     date: 'Annual Flagship Concert',
     location: 'UENR Campus, Sunyani',
     description:
-      'Our signature annual concert — a night of extraordinary worship, breathtaking performances, and divine encounters. Ayeyi Soronko (Praise Him Alone) is the pinnacle of the Chords Ministry calendar, drawing believers from across campus and beyond.',
+      'Our signature annual concert,a night of extraordinary worship, breathtaking performances, and divine encounters. Ayeyi Soronko (Praise Him Alone) is the pinnacle of the Chords Ministry calendar, drawing believers from across campus and beyond.',
     image:
       'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80',
     category: 'Concert',

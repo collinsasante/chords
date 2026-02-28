@@ -57,7 +57,7 @@ export function Footer() {
             </a>
 
             <p className="text-white/32 text-sm leading-[1.8] mb-9 max-w-[260px]">
-              Excellence in Harmony. A non-denominational music group at UENR, Sunyani — spreading the Word of God through music and choreography since 2014.
+              Excellence in Harmony. A non-denominational music group at UENR, Sunyani. Spreading the Word of God through music and choreography since 2014.
             </p>
 
             <div className="flex gap-2.5">

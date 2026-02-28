@@ -3,6 +3,7 @@ import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { SectionLabel, Button } from '../ui'
 import { EASE } from '../../lib/animations'
+import ctaBg from '../../CosmicKreatifStudios299.jpg'
 
 export function CTA() {
   const ref = useRef<HTMLElement>(null)
@@ -20,12 +21,12 @@ export function CTA() {
         style={{ y: imageY }}
       >
         <img
-          src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1920&q=80"
+          src={ctaBg}
           alt=""
           role="presentation"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-chords/88" />
+        <div className="absolute inset-0 bg-chords/55" />
         <div className="absolute inset-0 bg-gradient-to-b from-chords via-transparent to-chords opacity-65" />
       </motion.div>
 
@@ -68,7 +69,7 @@ export function CTA() {
           </h2>
 
           <p className="text-white/42 text-base lg:text-[1.05rem] max-w-lg mx-auto mb-12 leading-[1.8]">
-            Whether you have a voice, an instrument, or a passion for movement — there is a place for you in Chords Ministry. Join a non-denominational movement spreading God's Word through music and choreography since 2014.
+            Whether you have a voice, an instrument, or a passion for movement, there is a place for you in Chords Ministry. Join a non-denominational movement spreading God's Word through music and choreography since 2014.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

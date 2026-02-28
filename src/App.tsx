@@ -17,7 +17,7 @@ function ScrollProgress() {
 
 export default function App() {
   return (
-    <div className="bg-chords text-white overflow-x-hidden">
+    <div className="relative bg-chords text-white overflow-x-hidden">
       <ScrollProgress />
       <Navbar />
 
