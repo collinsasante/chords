@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { ChevronDown, Play } from 'lucide-react'
-import { clipReveal, EASE } from '../../lib/animations'
+import { EASE } from '../../lib/animations'
 import { Button } from '../ui'
 import heroBg from '../../CosmicKreatifStudios294.jpg'
 
@@ -88,40 +88,6 @@ export function Hero() {
           </span>
           <span className="h-px w-8 bg-gold" />
         </motion.div>
-
-        {/* ── Clip-reveal heading — each line slides up from behind ── */}
-        <h1
-          className="font-black leading-[0.92] tracking-tight mb-10 lg:mb-14"
-          style={{ fontSize: 'clamp(3.8rem, 11.5vw, 11rem)' }}
-        >
-          {['Raising', 'Kingdom', 'Voices'].map((word, i) => (
-            <div key={word} className="overflow-hidden block">
-              <motion.span
-                className={`block ${i === 1 ? 'text-gold italic font-display' : 'text-white'}`}
-                variants={clipReveal}
-                custom={i}
-                initial="hidden"
-                animate="visible"
-              >
-                {word}
-              </motion.span>
-            </div>
-          ))}
-
-          {/* Mobile-only: "Chords Ministry" label as 4th line */}
-          <div className="block lg:hidden overflow-hidden mt-3">
-            <motion.span
-              className="block text-gold/80 font-black tracking-[0.32em] uppercase"
-              style={{ fontSize: 'clamp(1rem, 4.5vw, 1.4rem)' }}
-              variants={clipReveal}
-              custom={3}
-              initial="hidden"
-              animate="visible"
-            >
-              Chords Ministry
-            </motion.span>
-          </div>
-        </h1>
 
         {/* Subtext */}
         <motion.p
