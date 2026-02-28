@@ -107,6 +107,20 @@ export function Hero() {
               </motion.span>
             </div>
           ))}
+
+          {/* Mobile-only: "Chords Ministry" label as 4th line */}
+          <div className="block lg:hidden overflow-hidden mt-3">
+            <motion.span
+              className="block text-gold/80 font-black tracking-[0.32em] uppercase"
+              style={{ fontSize: 'clamp(1rem, 4.5vw, 1.4rem)' }}
+              variants={clipReveal}
+              custom={3}
+              initial="hidden"
+              animate="visible"
+            >
+              Chords Ministry
+            </motion.span>
+          </div>
         </h1>
 
         {/* Subtext */}
