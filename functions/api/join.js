@@ -38,7 +38,7 @@ export async function onRequestPost(context) {
             Name: fields.fullName,
             Email: fields.email,
             Phone: fields.phone,
-            'Graduation Year': Number(fields.graduationYear) || fields.graduationYear,
+            'Graduation Year (Number)': Number(fields.graduationYear) || fields.graduationYear,
             Instrument: fields.instrument,
             Message: fields.message,
             'Submitted At': new Date().toISOString().split('T')[0],
