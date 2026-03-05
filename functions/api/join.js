@@ -32,7 +32,7 @@ export async function onRequestPost(context) {
             Department: fields.department,
             Level: fields.level,
             Instrument: fields.instrument,
-            'Submitted At': new Date().toISOString(),
+            'Submitted At': new Date().toISOString().split('T')[0],
           }
         : {
             Name: fields.fullName,
@@ -41,7 +41,7 @@ export async function onRequestPost(context) {
             'Graduation Year': Number(fields.graduationYear) || fields.graduationYear,
             Instrument: fields.instrument,
             Message: fields.message,
-            'Submitted At': new Date().toISOString(),
+            'Submitted At': new Date().toISOString().split('T')[0],
           }
 
     const res = await fetch(

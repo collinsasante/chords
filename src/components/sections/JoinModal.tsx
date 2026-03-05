@@ -256,7 +256,7 @@ export function JoinModal() {
                         required
                       >
                         <option value="" disabled>Select level</option>
-                        {['100 Level', '200 Level', '300 Level', '400 Level', '500 Level', 'Postgraduate'].map((l) => (
+                        {['Level 100', 'Level 200', 'Level 300', 'Level 400', 'Postgraduate'].map((l) => (
                           <option key={l} value={l} className="bg-chords-card">{l}</option>
                         ))}
                       </select>
