@@ -16,7 +16,6 @@ interface CurrentMember {
   department: string
   level: string
   instrument: string
-  timestamp: string
 }
 
 interface OldMember {
@@ -27,15 +26,15 @@ interface OldMember {
   graduationYear: string
   instrument: string
   message: string
-  timestamp: string
 }
 
-const STORAGE_KEY = 'chords_members'
-
-function saveRecord(data: CurrentMember | OldMember) {
-  const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]') as (CurrentMember | OldMember)[]
-  existing.push(data)
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(existing))
+async function saveRecord(data: CurrentMember | OldMember): Promise<void> {
+  const res = await fetch('/api/join', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+  if (!res.ok) throw new Error('Submission failed')
 }
 
 // ── Small form primitives ─────────────────────────────────────────────────────
@@ -60,6 +59,8 @@ export function JoinModal() {
   const [open, setOpen] = useState(false)
   const [tab, setTab] = useState<MemberType>('current')
   const [done, setDone] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
 
   // Current member state
   const [cur, setCur] = useState({ fullName: '', email: '', phone: '', department: '', level: '', instrument: '' })
@@ -77,20 +78,37 @@ export function JoinModal() {
   function close() {
     setOpen(false)
     setDone(false)
+    setError('')
     setCur({ fullName: '', email: '', phone: '', department: '', level: '', instrument: '' })
     setOld({ fullName: '', email: '', phone: '', graduationYear: '', instrument: '', message: '' })
   }
 
-  function submitCurrent(e: React.FormEvent) {
+  async function submitCurrent(e: React.FormEvent) {
     e.preventDefault()
-    saveRecord({ ...cur, type: 'current', timestamp: new Date().toISOString() })
-    setDone(true)
+    setSubmitting(true)
+    setError('')
+    try {
+      await saveRecord({ ...cur, type: 'current' })
+      setDone(true)
+    } catch {
+      setError('Something went wrong. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
-  function submitOld(e: React.FormEvent) {
+  async function submitOld(e: React.FormEvent) {
     e.preventDefault()
-    saveRecord({ ...old, type: 'old', timestamp: new Date().toISOString() })
-    setDone(true)
+    setSubmitting(true)
+    setError('')
+    try {
+      await saveRecord({ ...old, type: 'old' })
+      setDone(true)
+    } catch {
+      setError('Something went wrong. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -180,6 +198,9 @@ export function JoinModal() {
               ) : tab === 'current' ? (
                 /* ── Current Member form ── */
                 <form onSubmit={submitCurrent} className="space-y-5">
+                  {error && (
+                    <p className="text-red-400 text-xs text-center py-2">{error}</p>
+                  )}
                   <Field label="Full Name" required>
                     <input
                       className={inputCls}
@@ -249,15 +270,19 @@ export function JoinModal() {
 
                   <button
                     type="submit"
-                    className="w-full mt-2 bg-gold text-chords font-black text-[10px] uppercase tracking-[0.25em] py-4 hover:bg-gold-light transition-all duration-300 flex items-center justify-center gap-2"
+                    disabled={submitting}
+                    className="w-full mt-2 bg-gold text-chords font-black text-[10px] uppercase tracking-[0.25em] py-4 hover:bg-gold-light transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Join Now <ChevronRight size={14} />
+                    {submitting ? 'Submitting...' : (<>Join Now <ChevronRight size={14} /></>)}
                   </button>
                 </form>
 
               ) : (
                 /* ── Old Member form ── */
                 <form onSubmit={submitOld} className="space-y-5">
+                  {error && (
+                    <p className="text-red-400 text-xs text-center py-2">{error}</p>
+                  )}
                   <Field label="Full Name" required>
                     <input
                       className={inputCls}
@@ -326,9 +351,10 @@ export function JoinModal() {
 
                   <button
                     type="submit"
-                    className="w-full mt-2 bg-gold text-chords font-black text-[10px] uppercase tracking-[0.25em] py-4 hover:bg-gold-light transition-all duration-300 flex items-center justify-center gap-2"
+                    disabled={submitting}
+                    className="w-full mt-2 bg-gold text-chords font-black text-[10px] uppercase tracking-[0.25em] py-4 hover:bg-gold-light transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Reconnect <ChevronRight size={14} />
+                    {submitting ? 'Submitting...' : (<>Reconnect <ChevronRight size={14} /></>)}
                   </button>
                 </form>
               )}
