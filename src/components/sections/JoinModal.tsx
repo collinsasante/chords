@@ -34,7 +34,10 @@ async function saveRecord(data: CurrentMember | OldMember): Promise<void> {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   })
-  if (!res.ok) throw new Error('Submission failed')
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body?.error ?? 'Submission failed')
+  }
 }
 
 // ── Small form primitives ─────────────────────────────────────────────────────
@@ -90,8 +93,8 @@ export function JoinModal() {
     try {
       await saveRecord({ ...cur, type: 'current' })
       setDone(true)
-    } catch {
-      setError('Something went wrong. Please try again.')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
     } finally {
       setSubmitting(false)
     }
@@ -104,8 +107,8 @@ export function JoinModal() {
     try {
       await saveRecord({ ...old, type: 'old' })
       setDone(true)
-    } catch {
-      setError('Something went wrong. Please try again.')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
     } finally {
       setSubmitting(false)
     }

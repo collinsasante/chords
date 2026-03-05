@@ -58,8 +58,9 @@ export async function onRequestPost(context) {
 
     if (!res.ok) {
       const err = await res.json().catch(() => ({}))
-      console.error('Airtable error:', err)
-      return json({ error: 'Failed to save record' }, res.status)
+      console.error('Airtable error:', JSON.stringify(err))
+      // Pass Airtable's message through so we can debug field name mismatches
+      return json({ error: err?.error?.message ?? err?.error ?? 'Failed to save record', detail: err }, res.status)
     }
 
     return json({ ok: true }, 200)
