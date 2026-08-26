@@ -6,7 +6,7 @@
  *   AIRTABLE_BASE_ID — your base ID (starts with "app...")
  *
  * Airtable tables expected:
- *   "Current Members" — Name, Email, Phone, Date of Birth, Department, Level, Instrument, Hostel, Submitted At
+ *   "Current Members" — Name, Email, Phone, Date of Birth, Department, Level, Instrument, Hostel, Emergency Contact Name, Emergency Contact Phone, Submitted At
  *   "Old Members"     — Name, Email, Phone, Graduation Year, Instrument, Message, Submitted At
  */
 
@@ -34,6 +34,8 @@ export async function onRequestPost(context) {
             Level: fields.level,
             Instrument: fields.instrument,
             Hostel: fields.hostel,
+            'Emergency Contact Name': fields.emergencyName,
+            'Emergency Contact Phone': fields.emergencyPhone,
             'Submitted At': new Date().toISOString().split('T')[0],
           }
         : {

@@ -18,6 +18,8 @@ interface CurrentMember {
   level: string
   instrument: string
   hostel: string
+  emergencyName: string
+  emergencyPhone: string
 }
 
 interface OldMember {
@@ -68,7 +70,7 @@ export function JoinModal() {
   const [error, setError] = useState('')
 
   // Current member state
-  const [cur, setCur] = useState({ fullName: '', email: '', phone: '', dateOfBirth: '', department: '', level: '', instrument: '', hostel: '' })
+  const [cur, setCur] = useState({ fullName: '', email: '', phone: '', dateOfBirth: '', department: '', level: '', instrument: '', hostel: '', emergencyName: '', emergencyPhone: '' })
   // Old member state
   const [old, setOld] = useState({ fullName: '', email: '', phone: '', graduationYear: '', instrument: '', message: '' })
 
@@ -84,7 +86,7 @@ export function JoinModal() {
     setOpen(false)
     setDone(false)
     setError('')
-    setCur({ fullName: '', email: '', phone: '', dateOfBirth: '', department: '', level: '', instrument: '', hostel: '' })
+    setCur({ fullName: '', email: '', phone: '', dateOfBirth: '', department: '', level: '', instrument: '', hostel: '', emergencyName: '', emergencyPhone: '' })
     setOld({ fullName: '', email: '', phone: '', graduationYear: '', instrument: '', message: '' })
   }
 
@@ -293,6 +295,28 @@ export function JoinModal() {
                       required
                     />
                   </Field>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <Field label="Emergency Contact Name" required>
+                      <input
+                        className={inputCls}
+                        value={cur.emergencyName}
+                        onChange={(e) => setCur((f) => ({ ...f, emergencyName: e.target.value }))}
+                        placeholder="Full name"
+                        required
+                      />
+                    </Field>
+                    <Field label="Emergency Contact Phone" required>
+                      <input
+                        type="tel"
+                        className={inputCls}
+                        value={cur.emergencyPhone}
+                        onChange={(e) => setCur((f) => ({ ...f, emergencyPhone: e.target.value }))}
+                        placeholder="+234 ..."
+                        required
+                      />
+                    </Field>
+                  </div>
 
                   <button
                     type="submit"
