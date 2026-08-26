@@ -13,6 +13,7 @@ interface CurrentMember {
   fullName: string
   email: string
   phone: string
+  dateOfBirth: string
   department: string
   level: string
   instrument: string
@@ -66,7 +67,7 @@ export function JoinModal() {
   const [error, setError] = useState('')
 
   // Current member state
-  const [cur, setCur] = useState({ fullName: '', email: '', phone: '', department: '', level: '', instrument: '' })
+  const [cur, setCur] = useState({ fullName: '', email: '', phone: '', dateOfBirth: '', department: '', level: '', instrument: '' })
   // Old member state
   const [old, setOld] = useState({ fullName: '', email: '', phone: '', graduationYear: '', instrument: '', message: '' })
 
@@ -82,7 +83,7 @@ export function JoinModal() {
     setOpen(false)
     setDone(false)
     setError('')
-    setCur({ fullName: '', email: '', phone: '', department: '', level: '', instrument: '' })
+    setCur({ fullName: '', email: '', phone: '', dateOfBirth: '', department: '', level: '', instrument: '' })
     setOld({ fullName: '', email: '', phone: '', graduationYear: '', instrument: '', message: '' })
   }
 
@@ -236,6 +237,17 @@ export function JoinModal() {
                       />
                     </Field>
                   </div>
+
+                  <Field label="Date of Birth" required>
+                    <input
+                      type="date"
+                      className={inputCls}
+                      value={cur.dateOfBirth}
+                      onChange={(e) => setCur((f) => ({ ...f, dateOfBirth: e.target.value }))}
+                      max={new Date().toISOString().split('T')[0]}
+                      required
+                    />
+                  </Field>
 
                   <Field label="Department / Faculty" required>
                     <input
