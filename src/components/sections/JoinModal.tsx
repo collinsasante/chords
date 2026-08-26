@@ -17,6 +17,7 @@ interface CurrentMember {
   department: string
   level: string
   instrument: string
+  hostel: string
 }
 
 interface OldMember {
@@ -67,7 +68,7 @@ export function JoinModal() {
   const [error, setError] = useState('')
 
   // Current member state
-  const [cur, setCur] = useState({ fullName: '', email: '', phone: '', dateOfBirth: '', department: '', level: '', instrument: '' })
+  const [cur, setCur] = useState({ fullName: '', email: '', phone: '', dateOfBirth: '', department: '', level: '', instrument: '', hostel: '' })
   // Old member state
   const [old, setOld] = useState({ fullName: '', email: '', phone: '', graduationYear: '', instrument: '', message: '' })
 
@@ -83,7 +84,7 @@ export function JoinModal() {
     setOpen(false)
     setDone(false)
     setError('')
-    setCur({ fullName: '', email: '', phone: '', dateOfBirth: '', department: '', level: '', instrument: '' })
+    setCur({ fullName: '', email: '', phone: '', dateOfBirth: '', department: '', level: '', instrument: '', hostel: '' })
     setOld({ fullName: '', email: '', phone: '', graduationYear: '', instrument: '', message: '' })
   }
 
@@ -282,6 +283,16 @@ export function JoinModal() {
                       />
                     </Field>
                   </div>
+
+                  <Field label="Hostel / Place of Stay" required>
+                    <input
+                      className={inputCls}
+                      value={cur.hostel}
+                      onChange={(e) => setCur((f) => ({ ...f, hostel: e.target.value }))}
+                      placeholder="e.g. Republic Hall, off-campus..."
+                      required
+                    />
+                  </Field>
 
                   <button
                     type="submit"
